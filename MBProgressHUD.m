@@ -283,6 +283,16 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	[self hide:[animated boolValue]];
 }
 
+- (void)hide:(BOOL)animated afterDelay:(NSTimeInterval)delay withImage:(UIImage *)image {
+    if (image) {
+        self.taskInProgress = NO;
+        self.mode = MBProgressHUDModeCustomView;
+        self.customView = [[UIImageView alloc] initWithImage:image];
+    }
+    
+    [self hide:animated afterDelay:delay];
+}
+
 #pragma mark - Timer callbacks
 
 - (void)handleGraceTimer:(NSTimer *)theTimer {
